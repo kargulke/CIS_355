@@ -1,2 +1,1 @@
-# CIS_355
-Project for class
+# cis 355
