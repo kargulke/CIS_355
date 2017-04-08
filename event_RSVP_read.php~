@@ -20,8 +20,8 @@
 	}
 ?> <!DOCTYPE html> <html lang="en"> <head>
     <meta charset="utf-8">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="js/bootstrap.min.js"></script> </head> <body>
+    <link href="css/grayscale.min.css" rel="stylesheet">
+    <script src="js/grayscale.min.js"></script> </head> <body>
     <div class="container">
     
     			<div class="span10 offset1">
