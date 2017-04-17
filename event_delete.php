@@ -26,10 +26,12 @@
 		header("Location: index.php");
 		
 	} 
-?> <!DOCTYPE html> <html lang="en"> <head>
-    <meta charset="utf-8">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="js/bootstrap.min.js"></script> </head> <body>
+?> <!DOCTYPE html> <html lang="en"> 
+<?php
+	include 'class.php';
+	objectClass::headerShort();
+?>
+	<body>
     <div class="container">
     
     			<div class="span10 offset1">
@@ -42,7 +44,8 @@
 					  <p class="alert alert-error">Are you sure to delete ?</p>
 					  <div class="form-actions">
 						  <button type="submit" class="btn btn-danger">Yes</button>
-						  <a class="btn" href="index.php">No</a>
+							
+							<button onclick="window.location='index.php'" class="btn btn-success">No</button>
 						</div>
 					</form>
 				</div>

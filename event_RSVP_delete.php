@@ -22,10 +22,12 @@
 		Database::disconnect();
 		header("Location: event_RSVP_index.php?event_id=". $data['event_id']);
 	} 
-?> <!DOCTYPE html> <html lang="en"> <head>
-    <meta charset="utf-8">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="js/bootstrap.min.js"></script> </head> <body>
+?> <!DOCTYPE html> <html lang="en"> 
+<?php
+	include 'class.php';
+	objectClass::headerShort();
+?>
+	<body>
     <div class="container">
     
     			<div class="span10 offset1">

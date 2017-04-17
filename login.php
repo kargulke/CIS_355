@@ -7,8 +7,8 @@
      
     # if there was data passed, then verify password,  
     # otherwise do nothing (that is, just display html for login) 
-	var_dump($_POST);
-	var_dump($_GET);
+	#var_dump($_POST);
+	#var_dump($_GET);
 	
 	$event_id = null;
 	if ( !empty($_POST['event_id'])) {
@@ -60,13 +60,10 @@
 ?> 
 <!DOCTYPE html> 
 <html lang="en"> 
-<head> 
-    <meta charset="utf-8"> 
-
-    <script src="js/bootstrap.min.js"></script> 
-        <link   href="css/bootstrap.min.css" rel="stylesheet"> 
-
-</head> 
+<?php
+	include 'class.php';
+	objectClass::headerShort();
+?>
 <body> 
     <div class="container">      
         <div class="span10 offset1"> 
@@ -93,15 +90,11 @@
                 </div> 
               </div>                
               <div class="form-actions"> 
-                  <button type="submit" class="btn btn-success">Create</button> 
+                  <button type="submit" class="btn btn-success">Login</button> 
                   <a class="btn" href="index.php">Back</a> 
                 </div>               
             </form>              
         </div>                  
     </div> <!-- /container -->      
-    <?php 
-        echo "<br /><br /><br /><br />"; 
-        show_source(__FILE__); 
-    ?> 
   </body> 
 </html> 

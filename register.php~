@@ -3,13 +3,17 @@
 	require 'database.php';
     session_start(); 
 
+
 	if ( !empty($_POST)) {
 		// keep track validation errors
-		$idError = null;
+
 		$usernameError = null;	
 		$sizeError = null;
 		$emailError = null;
 		$passwordError = null;
+		$imgError = null;
+		$tempname = null;
+		$content = null;
 		
 		// keep track post values
 
@@ -17,6 +21,7 @@
 		$size = $_POST['member_size'];
 		$email = $_POST['member_email'];
 		$password = $_POST['member_password'];
+		$img = $_POST['profile_pic'];
 		
 		// validate input
 		$valid = true;
@@ -39,34 +44,40 @@
 			$passwordError = 'Please enter password';
 			$valid = false;
 		}
-
-		// insert data
+		if($_FILES['profile_pic']['size']>0 && $_FILES['profile_pic']['size'] < 2000000){
+    		$tempname = $_FILES['profile_pic']['tmp_name'];
+    		$fp = fopen($tempname, 'rb');
+    		$content = fread($fp, filesize($tempname));
+    		fclose($fp);
+		}
+					    var_dump($_FILES);
 		if ($valid) {
 			$pdo = Database::connect();
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			$sql = "INSERT INTO Members (member_username, member_size, member_email, member_password) values(?, ?, ?, ?, ?, ?, ?)";
+			$sql = "INSERT INTO Members (member_username, member_size, member_email, member_password, profile_pic) values(?, ?, ?, ?, ?)";
 			$q = $pdo->prepare($sql);
-			$q->execute(array($username, $size, $email, $password));
+			$q->execute(array($username, $size, $email, $password, $content));
+
 			Database::disconnect();
 			header("Location: index.php");
 		}
+		
 	}
 ?>
 
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <link   href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="js/bootstrap.min.js"></script>
-</head>
+<?php
+	include 'class.php';
+	objectClass::headerShort();
+?>
 
 <body>
     <div class="container">
     			<div class="span10 offset1">
     				<div class="row">
-		    			<h3>Create an Event</h3>
+		    			<h3>Create an Account</h3>
 		    		</div>
 	    			<form class="form-horizontal" action="register.php" method="post">
 					  <div class="control-group <?php echo !empty($usernameError)?'error':'';?>">
@@ -105,7 +116,15 @@
 					      	<?php endif;?>
 					    </div>
 					  </div>
-
+					  <div class="control-group <?php echo !empty($imgError)?'error':'';?>">
+					    <label class="control-label">Profile Pic</label>
+					    <div class="controls">
+ 					      	<input name="profile_pic" type="file" enctype="multipart/form-data" placeholder="">
+					      	<?php if (!empty($imgError)): ?>
+					      		<span class="help-inline"><?php echo $imgError;?></span>
+					      	<?php endif;?>
+					    </div>
+					  </div>
 
 					  <div class="form-actions">
 						  <button type="submit" class="btn btn-success">Create</button>

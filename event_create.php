@@ -71,11 +71,10 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <link   href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="js/bootstrap.min.js"></script>
-</head>
+<?php
+	include 'class.php';
+	objectClass::headerShort();
+?>
 
 <body>
     <div class="container">
@@ -151,7 +150,7 @@
 
 					  <div class="form-actions">
 						  <button type="submit" class="btn btn-success">Create</button>
-						  <a class="btn" href="index.php">Back</a>
+						  <button onclick="window.location='index.php'" class="btn btn-success">Back</button>
 						</div>
 					</form>
 				</div>

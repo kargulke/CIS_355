@@ -1,8 +1,6 @@
 <?php
 	require 'database.php';
     session_start(); 
-
-	
 	$id = null;
 	if ( !empty($_GET['event_id'])) {
 		$id = $_REQUEST['event_id'];
@@ -19,10 +17,14 @@
 		$data = $q->fetch(PDO::FETCH_ASSOC);
 		Database::disconnect();
 	}
-?> <!DOCTYPE html> <html lang="en"> <head>
-    <meta charset="utf-8">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="js/bootstrap.min.js"></script> </head> <body>
+?> <!DOCTYPE html> <html lang="en"> 
+<?php
+
+
+	include 'class.php';
+	objectClass::headerShort();
+?>
+	<body>
     <div class="container">
     
     			<div class="span10 offset1">
@@ -96,7 +98,7 @@
 					    </div>
 					  </div>
 					    <div class="form-actions">
-						  <a class="btn" href="index.php">Back</a>
+							<button onclick="window.location='index.php'" class="btn btn-success">Back</button>
 					   </div>
 					</div>
 				</div>

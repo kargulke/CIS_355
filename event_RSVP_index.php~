@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <link   href="css/grayscale.min.css" rel="stylesheet">
-    <script src="js/grayscale.min.js"></script>
-</head>
+<?php
+						session_start(); 
+
+	include 'class.php';
+	objectClass::headerShort();
+?>
 
 <body>
     <div class="container">
@@ -41,13 +42,13 @@
 							echo '<td>'. $row['rsvp_etd'] . '</td>';
 							echo '<td>'. $row['member_username'] . '</td>';
 							echo '<td width=300>';
-							echo '<a class="btn" href="event_RSVP_read.php?rsvp_id='.$row['rsvp_id'].'">Read</a>';
+							echo "<button class='btn' onclick=\"window.location='event_RSVP_read.php?rsvp_id=".$row["rsvp_id"]."'\">Read</a>";
 							if($_SESSION['member_username'] == $row['member_username'])
 							{
 								echo '&nbsp;';
-								echo '<a class="btn btn-success" href="event_RSVP_update.php?rsvp_id='.$row['rsvp_id'].'">Update</a>';
+								echo "<button class='btn btn-success' onclick=\"window.location='event_RSVP_update.php?rsvp_id=".$row["rsvp_id"]."'\">Update</a>";
 								echo '&nbsp;';
-								echo '<a class="btn btn-danger" href="event_RSVP_delete.php?rsvp_id='.$row['rsvp_id'].'">Delete</a>';
+								echo "<button class='btn btn-danger' onclick=\"window.location='event_RSVP_delete.php?rsvp_id=".$row["rsvp_id"]."'\">Delete</a>";
 							}
 							echo '</td>';
 							echo '</tr>';
@@ -57,7 +58,7 @@
 				      </tbody>
 	            </table>
 									  <div class="form-actions">
-					<a href=<?php echo "event_RSVP.php?event_id=". $id;?> class="btn btn-success">Create</a>
+					<button onclick="window.location="<?php echo "event_RSVP.php?event_id=". $id;?> class="btn btn-success">Create</a>
 						  <a class="btn" href="index.php">Back</a>
 						</div>
     	</div>
